@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRODUCT.UA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            background: url('background/2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            z-index: -1;
+        }
+    </style>
+    <script defer src="js/auth.js"></script>
+    <script defer src="js/others.js"></script>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="Home.html">PRODUCT.UA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="container mt-3">
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="catalogDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Каталог
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="catalogDropdown">
+                            <li><a class="dropdown-item" href="Catalog/Dairy.html">Молочні продукти</a></li>
+                            <li><a class="dropdown-item" href="Catalog/Fruit.html">Фрукти</a></li>
+                            <li><a class="dropdown-item" href="Catalog/Vegetable.html">Овочі</a></li>
+                            <li><a class="dropdown-item" href="Catalog/Meat.html">М'ясо</a></li>
+                            <li><a class="dropdown-item" href="Catalog/Drink.html">Напої</a></li>
+                            <li><a class="dropdown-item" href="Catalog/Bakaliia.html">Бакалія</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="Home.html">Головна</a></li>
+                    <li class="nav-item"><a class="nav-link" href="favorites.html">Вподобані</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile/Profile.html">Кабінет</a></li>
+                </ul>
+            </div>
+            
+            <div id="welcomeMessage" class="alert alert-info mt-4" style="display:none;">
+                <p>Вітаємо, <span id="userName"></span>!</p>
+              </div>
+        </div>
+    </nav>
+    
+    <!-- Каталог -->
+    
+    
+    <div class="container mt-4">
+        <h2>Продукти</h2>
+        <div class="d-flex justify-content-between mb-3">
+            <input type="text" class="form-control w-50" id="searchInput" placeholder="Search for a product...">
+            <select class="form-select w-auto" id="sortOptions">
+                <option value="popular">Популярніші</option>
+                <option value="cheapest">Найдешевші</option>
+                <option value="expensive">Найдорожчі</option>
+            </select>
+            <button class="btn btn-primary" id="chatbot">Чат з ШІ</button>
+        </div>
+        <div class="row" id="productList">
+            <!-- Products will be dynamically inserted here -->
+        </div>
+    </div>
+    
+    <footer class="bg-light text-center py-3 mt-4">
+        <p>Нещодавно переглянуті товари</p>
+        <div id="recentProducts" class="d-flex justify-content-center"></div>
+    </footer>
+    </script>
+    
+</body>
+</html>

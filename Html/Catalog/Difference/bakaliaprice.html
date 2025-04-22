@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ціни на бакалію - PRODUCT.UA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .price-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .price-card h5 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .price-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .price-list li {
+            margin-bottom: 10px;
+        }
+
+        .product-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .back-btn {
+            background-color: #f5deb3;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #d3b28c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="product-name">
+            <h2 id="product-title">Ціни на рис, 1 кг</h2>
+        </div>
+
+        <!-- Sorting Controls -->
+        <div class="mb-4">
+            <label for="sortPrice" class="form-label">Сортувати за ціною:</label>
+            <select id="sortPrice" class="form-select" onchange="sortPrices()">
+                <option value="asc">По зростанню</option>
+                <option value="desc">По спаданню</option>
+            </select>
+        </div>
+
+        <!-- Price Information Section -->
+        <div id="product-prices">
+            <!-- Prices will be dynamically inserted here -->
+        </div>
+
+        <button class="back-btn" onclick="window.history.back()">Повернутися</button>
+    </div>
+
+    <script>
+        // Object with product price data
+        const products = {
+            rice: {
+                title: "Ціни на рис, 1 кг",
+                prices: [
+                    { store: "АТБ", price: 30.00, offer: "-5% на рис" },
+                    { store: "Сільпо", price: 32.00, offer: "немає акцій" },
+                    { store: "Грош", price: 31.50, offer: "-3% на рис" }
+                ]
+            },
+            flour: {
+                title: "Ціни на борошно, 1 кг",
+                prices: [
+                    { store: "АТБ", price: 25.00, offer: "-10% на борошно" },
+                    { store: "Сільпо", price: 26.00, offer: "немає акцій" },
+                    { store: "Грош", price: 24.50, offer: "-2% на борошно" }
+                ]
+            },
+            sugar: {
+                title: "Ціни на цукор, 1 кг",
+                prices: [
+                    { store: "АТБ", price: 20.00, offer: "5% знижка" },
+                    { store: "Сільпо", price: 21.00, offer: "немає акцій" },
+                    { store: "Грош", price: 20.50, offer: "-3% на цукор" }
+                ]
+            },
+            salt: {
+                title: "Ціни на сіль, 1 кг",
+                prices: [
+                    { store: "АТБ", price: 10.00, offer: "знижка 10%" },
+                    { store: "Сільпо", price: 11.00, offer: "немає акцій" },
+                    { store: "Грош", price: 10.50, offer: "-5% на сіль" }
+                ]
+            }
+        };
+
+        // Function to update the product prices based on selection
+        function updatePrices(product) {
+            const productData = products[product];
+            if (!productData) return;
+
+            // Update the product title
+            document.getElementById('product-title').textContent = productData.title;
+
+            // Dynamically generate the price cards
+            const priceSection = document.getElementById('product-prices');
+            priceSection.innerHTML = ''; // Clear any previous content
+
+            productData.prices.forEach(priceInfo => {
+                const priceCard = document.createElement('div');
+                priceCard.classList.add('price-card');
+                priceCard.innerHTML =  
+                    `<h5>${priceInfo.store}</h5>
+                    <ul class="price-list">
+                        <li>Ціна: ${priceInfo.price} UAH</li>
+                        <li>Акція: ${priceInfo.offer}</li>
+                    </ul>`;
+                priceSection.appendChild(priceCard);
+            });
+        }
+
+        // Function to sort the prices based on selected option
+        function sortPrices() {
+            const sortOrder = document.getElementById('sortPrice').value;
+            const product = new URLSearchParams(window.location.search).get('product');
+            const productData = products[product];
+
+            if (productData) {
+                // Sort the prices array based on selected order
+                productData.prices.sort((a, b) => {
+                    if (sortOrder === 'asc') {
+                        return a.price - b.price;
+                    } else {
+                        return b.price - a.price;
+                    }
+                });
+
+                // Re-render prices after sorting
+                updatePrices(product);
+            }
+        }
+
+        // Get the product parameter from the URL and update prices
+        const urlParams = new URLSearchParams(window.location.search);
+        const product = urlParams.get('product') || 'rice'; // Default to 'rice' if no product specified
+        updatePrices(product);
+    </script>
+</body>
+</html>

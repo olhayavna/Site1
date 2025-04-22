@@ -1,0 +1,135 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бакалія - PRODUCT.UA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .product-card {
+            width: 18rem;
+            margin-bottom: 30px;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .product-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .choice-btn {
+            background-color: #f5deb3;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            width: 100%;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .choice-btn:hover {
+            background-color: #d3b28c;
+        }
+
+        @media (max-width: 576px) {
+            .product-section {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="../Home.html">PRODUCT.UA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="container mt-3">
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="catalogDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Каталог
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="catalogDropdown">
+                            <li><a class="dropdown-item" href="../Catalog/Dairy.html">Молочні продукти</a></li>
+                            <li><a class="dropdown-item" href="../Catalog/Fruit.html">Фрукти</a></li>
+                            <li><a class="dropdown-item" href="../Catalog/Vegetable.html">Овочі</a></li>
+                            <li><a class="dropdown-item" href="../Catalog/Meat.html">М'ясо</a></li>
+                            <li><a class="dropdown-item" href="../Catalog/Drink.html">Напої</a></li>
+                            <li><a class="dropdown-item" href="../Catalog/Bakaliia.html">Бакалія</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../Home.html">Головна</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../favorites.html">Вподобані</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../profile/Profile.html">Кабінет</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container py-5">
+        <h1 class="category-header">Бакалія</h1>
+
+        <div class="product-section">
+            <div class="card product-card">
+                <img src="rice.jpg" class="card-img-top product-image" alt="Рис">
+                <div class="card-body text-center">
+                    <h5 class="product-name">Рис, 1 кг</h5>
+                    <button class="choice-btn" onclick="window.location.href='Difference/bakaliaprice.html?product=rice'">Перевірити ціни</button>
+                </div>
+            </div>
+
+            <div class="card product-card">
+                <img src="flour.jpg" class="card-img-top product-image" alt="Борошно">
+                <div class="card-body text-center">
+                    <h5 class="product-name">Борошно пшеничне, 1 кг</h5>
+                    <button class="choice-btn" onclick="window.location.href='Difference/bakaliaprice.html?product=flour'">Перевірити ціни</button>
+                </div>
+            </div>
+
+            <div class="card product-card">
+                <img src="sugar.jpg" class="card-img-top product-image" alt="Цукор">
+                <div class="card-body text-center">
+                    <h5 class="product-name">Цукор, 1 кг</h5>
+                    <button class="choice-btn" onclick="window.location.href='Difference/bakaliaprice.html?product=sugar'">Перевірити ціни</button>
+                </div>
+            </div>
+
+            <div class="card product-card">
+                <img src="salt.jpg" class="card-img-top product-image" alt="Сіль">
+                <div class="card-body text-center">
+                    <h5 class="product-name">Сіль, 1 кг</h5>
+                    <button class="choice-btn" onclick="window.location.href='Difference/bakaliaprice.html?product=salt'">Перевірити ціни</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
